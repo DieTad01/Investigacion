@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/stylepnl.css">
+    <title>Programación No Lineal</title>
+</head>
+<body>
+    <header>
+        <h1>Programación No Lineal</h1>
+            <div class="menu-horizontal">
+              <li><a href="../../index.html">Regresar al menú principal</a></li>
+            </div>
+    </header>
+
+    <!-- 1. Meta -->
+    <section>
+        <p>
+            La programación no lineal es una técnica de optimización en la investigación de operaciones
+            donde la función objetivo o alguna de las restricciones son no lineales. A diferencia de la
+            programación lineal, estos problemas pueden tener múltiples óptimos locales y requieren
+            métodos especializados como gradiente, Lagrange o Newton para su solución.
+        </p>
+    </section><br><hr><br>
+
+    <!-- 2. Datos -->
+    <div class="datosimp">
+      <div class="grid">
+        <div>
+          <center><h2>Función objetivo</h2></center>
+          <center><label>Coeficientes (x, y)</label></center>
+          <div class="grid">
+            <label for="objectiveFunction">Función Objetivo (minimizar o maximizar):</label>
+            <input type="text" id="objectiveFunction" placeholder="Ej: x^2 + y^2 - 4x - 6y">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <center><label for="optimizationType">Tipo de Optimización:</label>
+                    <center><select id="optimizationType">
+                        <option value="min">Minimizar</option>
+                        <option value="max">Maximizar</option>
+                    </select></center>
+          </center>
+        </div>
+      </div><br><br>
+
+      <center><div class="input-group"> 
+        <label for="variables">Variables (separadas por comas):</label>
+          <input type="text" id="variables" placeholder="Ej: x, y">
+      </div></center><br>
+
+      <center><div class="input-group">
+            <h2>No se toman en cuenta las restricciones en el de gradiantes directamente, pero si se puede por penalizaciones</h2> 
+            <label for="constraints">Restricciones (una por línea):</label>
+            <textarea id="constraints" rows="4" placeholder="Ej: x + y <= 10
+            x^2 + y^2 <= 25
+            x >= 0
+            y >= 0"></textarea>
+      </div></center>
+      
+      <!--
+      <center><div class="botones" style="flex: 1 1 10%">
+        <button class="btn" id="solveBtn">Resolver y graficar</button>
+        <button class="btn" id="exampleBtn" style="background:#2563eb">Cargar ejemplo</button>
+        <div id="status"></div>
+      </div></center>
+      
+
+      <center><div class="input-group">
+          <label for="method">Método de Solución:</label>
+            <select id="method">
+              <option value="gradient">Método del Gradiente (básico)</option>
+              <option value="lagrange">Multiplicadores de Lagrange</option>
+              <option value="newton">Método de Newton (2 variables)</option>
+            </select>
+      </div>
+      -->
+                
+      <center><div class="buttons">
+            <button class="btn btn-calculate" id="calculateBtn">
+                <i class="fas fa-play-circle"></i> Calcular Solución
+            </button>
+            <button class="btn btn-reset" id="resetBtn">
+                <i class="fas fa-redo"></i> Reiniciar
+            </button>
+      </div></center>
+    </div><br>
+
+    <!-- 3. Calculos (Estan en el js) -->
+
+    <!-- 4. Display -->
+    <center><div class="card">
+       <center><h2>Resultados y Solución</h2></center>
+        <div class="result-container">
+          <div class="result-title">Solución del Problema:</div>
+          <div class="result-box" id="resultBox">
+            Los resultados aparecerán aquí después de calcular...
+            Los resultados planteados son estimados
+          </div>
+        </div>
+                
+        <div class="examples">
+          <center><h3><i class="fas fa-lightbulb"></i> Ejemplo para probar:</h3></center>
+            <ul>
+              <li><strong>Ejemplo 3:</strong> Min f(x) = (x-3)⁴, sin restricciones</li>
+            </ul>
+        </div>
+                
+        <div class="method-info">
+          <center><h3><i class="fas fa-university"></i> Información del Método:</h3></center>
+            <p id="methodInfo">
+              <strong>Método del Gradiente:</strong> Encuentra el mínimo de una función siguiendo la dirección contraria al gradiente (dirección de máximo descenso).
+            </p>
+          </div>
+    </div></center><br>
+
+    <center><div class="download">
+      <a href="../../assets/Programación no Lineal.pdf" download="Programacion no Lineal.pdf">Descargar mas informacion</a>
+    </div></center><br><br>
+  
+    <!-- 5. Navegabilidad (Es toda la página web) -->
+
+  <script src="../../js/prueba.js"></script>
+    
+    <footer>
+        <h1>Autor:</h1>
+        <h2>Pérez Hernández Diego Tadeo</h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+    </footer>
+</body>
+</html>

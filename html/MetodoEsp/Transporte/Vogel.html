@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../css/stylevoguel.css">
+    <title>Método Voguel</title>
+</head>
+<body>
+    <header>
+        <h1>Método Voguel</h1>
+            <div class="menu-horizontal">
+              <li><a href="../../../index.html">Regresar al menú principal</a></li>
+            </div>
+    </header>
+
+    <!-- 1. Meta -->
+    <section>
+        <p>
+            El método Vogel es una técnica de optimización que te ayuda a encontrar la forma más eficiente
+            de transportar bienes o productos entre diferentes puntos. Se trata de un método sencillo e
+            intuitivo que se basa en un sistema de penalizaciones para determinar la ruta más barata.
+        </p>
+    </section><br><hr><br>
+
+    <!-- 2. Datos -->
+    <div class="datosimp">
+        <div class="content">
+            <section class="input-section">
+                <center><h2 class="section-title">Configurar Problema de Transporte</h2>
+                
+                <div class="matrix-size">
+                    <div class="size-input">
+                        <label for="supplyCount">Número de Orígenes (Oferta)</label>
+                        <input type="number" id="supplyCount" min="2" max="6" value="3">
+                    </div>
+                    
+                    <div class="size-input">
+                        <label for="demandCount">Número de Destinos (Demanda)</label>
+                        <input type="number" id="demandCount" min="2" max="6" value="3">
+                    </div>
+                </div></center><br>
+                
+                <center><button id="generateMatrixBtn">Generar Tabla de Costos</button></center>
+                
+                <center><div class="matrix-input">
+                    <h3 class="section-title">Costos de Transporte</h3>
+                    <div id="costMatrixContainer"></div>
+                </div>
+                
+                <div class="matrix-input">
+                    <h3 class="section-title">Ofertas y Demandas</h3>
+                    <div id="supplyDemandContainer"></div>
+                </div></center>
+                
+                <center><button id="calculateBtn" class="btn-success">Calcular con Método Vogel</button></center>
+            </section>
+            
+            <center><section class="results-section">
+                <h2 class="section-title">Resultados y Pasos</h2>
+                <div id="resultsContainer">
+                    <p>Ingrese los datos del problema y haga clic en "Calcular con Método Vogel" para ver los resultados.</p>
+                </div>
+                <div id="stepsContainer" class="steps-container"></div>
+            </section></center>
+        </div>
+    </div><br>
+
+    <!-- 3. Calculos (Estan en el js) -->
+
+    <!-- 4. Display 
+    <center><div class="card">
+       <center><h2>Resultados y Solución</h2></center>
+        <div class="result-container">
+          <div class="result-title">Solución del Problema:</div>
+          <div class="result-box" id="resultBox">
+            Los resultados aparecerán aquí después de calcular...
+            Los resultados planteados son estimados
+          </div>
+        </div>
+                
+        <div class="examples">
+          <center><h3><i class="fas fa-lightbulb"></i> Ejemplo para probar:</h3></center>
+            <ul>
+              <li><strong>Ejemplo 3:</strong> Min f(x) = (x-3)⁴, sin restricciones</li>
+            </ul>
+        </div>
+                
+        <div class="method-info">
+          <center><h3><i class="fas fa-university"></i> Información del Método:</h3></center>
+            <p id="methodInfo">
+              <strong>Método del Gradiente:</strong> Encuentra el mínimo de una función siguiendo la dirección contraria al gradiente (dirección de máximo descenso).
+            </p>
+          </div>
+    </div></center><br>
+    -->
+
+    <center><div class="download">
+      <a href="../../assets/Programación no Lineal.pdf" download="Programacion no Lineal.pdf">Descargar mas informacion</a>
+    </div></center><br><br>
+  
+    <!-- 5. Navegabilidad (Es toda la página web) -->
+
+  <script src="../../../js/voguel.js"></script>
+    
+    <footer>
+        <h1>Autor:</h1>
+        <h2>Pérez Hernández Diego Tadeo</h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+    </footer>
+</body>
+</html>
