@@ -27,152 +27,122 @@
 
     <!-- 2. Datos -->
     <div class="datosimp">
-        <center><div class="content">
-            <section class="input-section">
-                <h2 class="section-title">Parámetros del Modelo</h2>
-                
-                <div class="formula-card">
-                    <div class="formula-title">Fórmulas Clave</div>
-                    <div class="formula">EOQ = √(2 × D × S / H)</div>
-                    <div class="formula">R = d × L</div>
-                    <div class="explanation">
-                        <strong>Donde:</strong><br>
-                        D = Demanda anual<br>
-                        S = Costo de ordenar por pedido<br>
-                        H = Costo de mantener por unidad por año<br>
-                        d = Demanda diaria<br>
-                        L = Tiempo de entrega en días<br>
-                        R = Punto de reorden
-                    </div>
-                </div>
+        <center><div class="formulas">
+            <div style="text-align: center; margin-bottom: 10px;">
+                <strong>Fórmulas principales:</strong>
+            </div>
+            <div class="formula">Q* = √[(2DS/H) × ((H+B)/B)]</div>
+            <div class="formula">S* = Q* × [H/(H+B)]</div>
+            <div style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 10px;">
+                Donde: D=Demanda, S=Costo ordenar, H=Costo mantener, B=Costo faltante
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="input-section">
+                <h3>Datos de Entrada</h3>
                 
                 <div class="input-group">
                     <label for="demanda">Demanda Anual (D)</label>
-                    <div class="input-with-unit">
-                        <input type="number" id="demanda" min="1" value="10000">
-                        <div class="unit">unidades/año</div>
-                    </div>
-                    <div class="explanation">Cantidad total requerida en un año.</div>
+                    <input type="number" id="demanda" value="10000" min="1">
                 </div>
                 
                 <div class="input-group">
-                    <label for="costo-ordenar">Costo de Ordenar (S)</label>
-                    <div class="input-with-unit">
-                        <input type="number" id="costo-ordenar" min="1" value="50">
-                        <div class="unit">$/pedido</div>
-                    </div>
-                    <div class="explanation">Costo fijo por realizar un pedido (procesamiento, transporte, etc.).</div>
+                    <label for="costo-ordenar">Costo por Pedido (S)</label>
+                    <input type="number" id="costo-ordenar" value="50" min="1" step="0.01">
                 </div>
                 
                 <div class="input-group">
-                    <label for="costo-mantener">Costo de Mantener (H)</label>
-                    <div class="input-with-unit">
-                        <input type="number" id="costo-mantener" min="0.01" value="2">
-                        <div class="unit">$/unidad/año</div>
-                    </div>
-                    <div class="explanation">Costo de almacenar una unidad durante un año.</div>
+                    <label for="costo-mantener">Costo Mantener por Unidad (H)</label>
+                    <input type="number" id="costo-mantener" value="2" min="0.01" step="0.01">
                 </div>
                 
                 <div class="input-group">
-                    <label for="costo-producto">Costo del Producto (C)</label>
-                    <div class="input-with-unit">
-                        <input type="number" id="costo-producto" min="0.01" value="10">
-                        <div class="unit">$/unidad</div>
-                    </div>
-                    <div class="explanation">Precio de compra por unidad del producto.</div>
+                    <label for="costo-faltante">Costo Faltante por Unidad (B)</label>
+                    <input type="number" id="costo-faltante" value="5" min="0.01" step="0.01">
                 </div>
                 
                 <div class="input-group">
-                    <label for="tiempo-entrega">Tiempo de Entrega (L)</label>
-                    <div class="input-with-unit">
-                        <input type="number" id="tiempo-entrega" min="1" value="5">
-                        <div class="unit">días</div>
-                    </div>
-                    <div class="explanation">Tiempo que tarda en llegar un pedido después de ordenarlo.</div>
-                </div>
-                
-                <div class="input-group">
-                    <label for="dias-trabajo">Días de Trabajo por Año</label>
-                    <div class="input-with-unit">
-                        <input type="number" id="dias-trabajo" min="200" max="365" value="250">
-                        <div class="unit">días</div>
-                    </div>
-                    <div class="explanation">Número de días que opera la empresa en un año.</div>
+                    <label for="costo-producto">Precio por Unidad (C)</label>
+                    <input type="number" id="costo-producto" value="10" min="0.01" step="0.01">
                 </div><br>
                 
-                <button id="calculateBtn" class="btn-success">Calcular EOQ y Punto de Reorden</button>
-                <button id="exampleBtn" style="margin-top: 10px;">Cargar Ejemplo</button>
-            </section><br>
+                <button id="btn-calcular" class="btn-calculate">Calcular EOQ con Déficit</button>
+                <button id="btn-ejemplo">Usar Ejemplo</button>
+            </div><br>
             
-            <section class="results-section">
-                <h2 class="section-title">Resultados del Modelo EOQ</h2>
+            <div class="results-section">
+                <h2>Resultados</h2>
                 
-                <div class="results-grid">
-                    <div class="result-card">
-                        <div class="result-label">Cantidad Económica de Pedido (EOQ)</div>
-                        <div class="result-value" id="eoq-result">0</div>
-                        <div class="result-unit">unidades por pedido</div>
-                        <div class="explanation">Cantidad óptima que minimiza el costo total de inventario.</div>
-                    </div>
-                    
-                    <div class="result-card">
-                        <div class="result-label">Punto de Reorden (R)</div>
-                        <div class="result-value" id="reorder-result">0</div>
+                <div class="results">
+                    <div class="result-item">
+                        <div class="result-label">Cantidad Óptima (Q*)</div>
+                        <div class="result-value" id="result-q">0</div>
                         <div class="result-unit">unidades</div>
-                        <div class="explanation">Nivel de inventario al cual se debe realizar un nuevo pedido.</div>
                     </div>
                     
-                    <div class="result-card">
-                        <div class="result-label">Costo Anual de Mantener</div>
-                        <div class="result-value" id="holding-cost-result">$0</div>
-                        <div class="result-unit">por año</div>
-                        <div class="explanation">Costo total de almacenar el inventario durante un año.</div>
+                    <div class="result-item warning">
+                        <div class="result-label">Déficit Máximo (S*)</div>
+                        <div class="result-value" id="result-s">0</div>
+                        <div class="result-unit">unidades</div>
                     </div>
                     
-                    <div class="result-card">
-                        <div class="result-label">Costo Anual de Ordenar</div>
-                        <div class="result-value" id="ordering-cost-result">$0</div>
-                        <div class="result-unit">por año</div>
-                        <div class="explanation">Costo total de realizar pedidos durante un año.</div>
+                    <div class="result-item">
+                        <div class="result-label">Inventario Máximo</div>
+                        <div class="result-value" id="result-invmax">0</div>
+                        <div class="result-unit">unidades</div>
+                    </div>
+                    
+                    <div class="result-item">
+                        <div class="result-label">Pedidos por Año</div>
+                        <div class="result-value" id="result-pedidos">0</div>
+                        <div class="result-unit">pedidos/año</div>
+                    </div>
+                    
+                    <div class="cost-summary">
+                        <div class="cost-item">
+                            <span>Costo de Ordenar:</span>
+                            <span id="cost-ordenar">$0.00</span>
+                        </div>
+                        <div class="cost-item">
+                            <span>Costo de Mantener:</span>
+                            <span id="cost-mantener">$0.00</span>
+                        </div>
+                        <div class="cost-item warning">
+                            <span>Costo de Faltante:</span>
+                            <span id="cost-faltante">$0.00</span>
+                        </div>
+                        <div class="cost-item">
+                            <span>Costo Total Anual:</span>
+                            <span id="cost-total">$0.00</span>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="cost-breakdown">
-                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Desglose de Costos Anuales</h3>
-                    
-                    <div class="cost-item">
-                        <span class="cost-name">Costo de Compra (D × C)</span>
-                        <span class="cost-value" id="purchase-cost">$0</span>
-                    </div>
-                    
-                    <div class="cost-item">
-                        <span class="cost-name">Costo de Ordenar (D/Q × S)</span>
-                        <span class="cost-value" id="ordering-cost-breakdown">$0</span>
-                    </div>
-                    
-                    <div class="cost-item">
-                        <span class="cost-name">Costo de Mantener (Q/2 × H)</span>
-                        <span class="cost-value" id="holding-cost-breakdown">$0</span>
-                    </div>
-                    
-                    <div class="cost-item">
-                        <span class="cost-name">Costo Total Anual de Inventario</span>
-                        <span class="cost-value" id="total-cost">$0</span>
-                    </div>
-                </div><br>
-                
-                <div class="inventory-chart">
-                    <h3 class="chart-title">Diagrama de Niveles de Inventario</h3>
-                    <div class="explanation">
-                        Visualización del ciclo de inventario con EOQ = <span class="highlight" id="chart-eoq">0</span> unidades
-                        y punto de reorden R = <span class="highlight" id="chart-reorder">0</span> unidades.
-                    </div><br>
-                    
-                    <div class="chart-container" id="chartContainer">
-                        <!-- El gráfico se generará dinámicamente con JavaScript -->
-                    </div>
+            </div>
+        </div><br>
+        
+        <div class="simple-chart">
+            <h2 class="chart-title">Representación del Inventario</h2>
+            <div class="chart-labels">
+                <div class="chart-label">
+                    <span id="label-invmax">0</span>
+                    Inventario Máximo
                 </div>
-            </section>
+                <div class="chart-label warning">
+                    <span id="label-deficit">0</span>
+                    Déficit Máximo
+                </div>
+            </div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color legend-blue"></div>
+                    <span>Inventario Disponible</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-red"></div>
+                    <span>Déficit/Faltante</span>
+                </div>
+            </div>
         </div></center>
     </div><br>
 
@@ -184,7 +154,7 @@
   
     <!-- 5. Navegabilidad (Es toda la página web) -->
 
-  <script src="../../js/EOQ.js"></script>
+  <script src="../../js/Deficit.js"></script>
     
     <footer>
         <h1>Autor:</h1>
