@@ -55,7 +55,7 @@
             
             // 1. Calcular Q* (cantidad óptima con déficit)
             // Q* = √[(2DS/H) × ((H+B)/B)]
-            const Q = Math.sqrt((2 * D * S / H) * ((H + B) / B));
+            const Q = Math.sqrt((2 * S * (D * (B + H))) / (B * H));
             
             // 2. Calcular S* (déficit máximo)
             // S* = Q* × [H/(H+B)]
