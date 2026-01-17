@@ -12,6 +12,7 @@
         const resultS = document.getElementById('result-s');
         const resultInvMax = document.getElementById('result-invmax');
         const resultPedidos = document.getElementById('result-pedidos');
+        const resultPorcentaje = document.getElementById('result-porcentaje');
         const costOrdenar = document.getElementById('cost-ordenar');
         const costMantener = document.getElementById('cost-mantener');
         const costFaltante = document.getElementById('cost-faltante');
@@ -88,9 +89,32 @@
                              costoOrdenarTotal, costoMantenerTotal, 
                              costoFaltanteTotal, costoTotal);
             
-            // Mostrar gráfico
-            mostrarGrafico(invMax, S_deficit);
-        }
+            // Calcular porcentaje de déficit
+            const porcentajeDeficit = (S_deficit / Q) * 100;
+            
+            // Formatear números
+            const formatoNumero = (num) => Math.round(num).toLocaleString();
+            const formatoDinero = (num) => `$${num.toFixed(2).toLocaleString()}`;
+            const formatoPorcentaje = (num) => `${num.toFixed(1)}%`;
+            
+            resultQ.textContent = formatoNumero(Q);
+            resultS.textContent = formatoNumero(S_deficit);
+            resultInvMax.textContent = formatoNumero(invMax);
+            resultPedidos.textContent = nPedidos.toFixed(1);
+            
+            // Mostrar porcentaje de déficit
+            if (resultPorcentaje) {
+                resultPorcentaje.textContent = formatoPorcentaje(porcentajeDeficit);
+            }
+            
+            costOrdenar.textContent = formatoDinero(costoOrdenarTotal);
+            costMantener.textContent = formatoDinero(costoMantenerTotal);
+            costFaltante.textContent = formatoDinero(costoFaltanteTotal);
+            costTotal.textContent = formatoDinero(costoTotal);
+            
+            labelInvMax.textContent = formatoNumero(invMax);
+            labelDeficit.textContent = formatoNumero(S_deficit);
+            }
         
         function mostrarResultados(Q, S_deficit, invMax, nPedidos, 
                                   costoOrdenarTotal, costoMantenerTotal, 
